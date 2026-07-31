@@ -1,15 +1,9 @@
 import './App.css'
-import { pokemonService } from './services/PokemonService.ts'
-
-async function getPokemon() {
-  await pokemonService.getPokemon()
-}
+import GetPokemonNames from './components/GetPokemonNames.tsx';
 
 function App() {
   return (
-    <>
-      <button onClick={getPokemon}>Get Pokemon</button>
-    </>
+    <GetPokemonNames />
   )
 }
 
