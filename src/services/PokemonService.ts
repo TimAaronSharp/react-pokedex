@@ -1,3 +1,4 @@
+import { ApiService } from "./ApiService.ts";
 
 type PokemonLinkInfo = {
   name: string;
@@ -11,16 +12,13 @@ type PokemonListResponse = {
   results: PokemonLinkInfo[]
 }
 
-class PokemonService {
+class PokemonService extends ApiService {
+  constructor() {
+    super("https://pokeapi.co/api/v2/");
+  }
 
   async getPokemonNames(): Promise<PokemonLinkInfo[]> {
-    const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0");
-
-    if (!res.ok) {
-      throw new Error(`Failed to fetch Pokemon list: ${res.status}`);
-    }
-
-    const data: PokemonListResponse = await res.json();
+    const data = await this.get<PokemonListResponse>("pokemon?limit=100000&offset=0");
     return data.results;
   }
 }
