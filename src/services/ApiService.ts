@@ -16,7 +16,7 @@ export abstract class ApiService {
       return data;
     } catch (error) {
       /*NOTE If the error was manually thrown by okCheck() it means the server responded,
-      but it sent back a bade code (like 404 or 500).*/
+      but it sent back a bad code (like 404 or 500).*/
       if (error instanceof Error && error.message.includes("API Error")) {
         // Pass that specific server error up to the UI.
         throw error;
