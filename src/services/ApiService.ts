@@ -1,15 +1,15 @@
 
 
 export abstract class ApiService {
-  protected baseUrl: string;
+  // protected baseUrl: string;
 
-  constructor(baseUrl: string) {
-    this.baseUrl = baseUrl;
-  }
+  // constructor(baseUrl: string) {
+  //   this.baseUrl = baseUrl;
+  // }
 
   protected async get<T>(endpoint: string): Promise<T> {
     try {
-      const res = await fetch(`${this.baseUrl}${endpoint}`);
+      const res = await fetch(`${endpoint}`);
       this.okCheck(res);
 
       const data: T = await res.json();
