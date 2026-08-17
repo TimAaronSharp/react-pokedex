@@ -14,9 +14,7 @@ body {
   padding-top: 5%;
 }
 
-.pokedex-screens-container {}
-
-.pokedex-screen-pokemon-img {
+.pokedex-pokemon-screen {
   background-color: rgba(65, 191, 223, 0.777);
   border-radius: 5%;
   height: 150px;
@@ -31,7 +29,7 @@ body {
   width: 100%;
 }
 
-.pokedex-screen-info {
+.pokedex-info-screen {
   display: flex;
   flex-direction: column;
   padding: 5px;
@@ -46,7 +44,7 @@ body {
   flex-direction: column;
 }
 
-.pokedex-ht-wt {
+.pokedex-ht-wt-wrapper {
   display: flex;
   justify-content: space-between;
 }

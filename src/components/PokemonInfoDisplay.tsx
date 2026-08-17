@@ -25,17 +25,23 @@ export function PokemonInfoDisplay() {
   return (
     <>
       <div className="pokedex-body">
-        <div className="pokedex-screens-container">
-          <div className="pokedex-screen-pokemon-img">
+        <div className="pokedex-screens-wrapper">
+          <div className="pokedex-pokemon-screen">
             <img className="pokemon-img" src={pokemonInfo?.sprites.front_default} alt="" />
           </div>
-          <div className="pokedex-screen-info">
-            <span>Id: {pokemonInfo?.id}</span>
-            <span>Species: {pokemonInfo?.species.name}</span>
-            <div className="pokedex-ht-wt">
-              <span>Ht: {pokemonInfo?.height}</span>
-              <span>Wt: {pokemonInfo?.weight}</span>
-            </div>
+
+          <div className="pokedex-info-screen-wrapper">
+            {/* NOTE Work on keeping the "info screen" rendered when a pokemon hasn't been selected yet. */}
+            {pokemonInfo && (
+              <div className="pokedex-info-screen">
+                <span>Id: {pokemonInfo?.id}</span>
+                <span>Species: {pokemonInfo?.species.name}</span>
+                <div className="pokedex-ht-wt-wrapper">
+                  <span>Ht: {pokemonInfo?.height}</span>
+                  <span>Wt: {pokemonInfo?.weight}</span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
