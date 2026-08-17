@@ -5,12 +5,14 @@ type PokemonLinkInfo = {
   url: string;
 }
 
-type PokemonInfo = {
+export type PokemonData = {
   cries: string,
   height: number,
   id: number,
   species: string,
-  sprites: string,
+  sprites: {
+    front_default: string
+  },
   weight: number
 }
 
@@ -31,8 +33,8 @@ class PokemonService extends ApiService {
     return data.results;
   }
 
-  async getPokemon(endpoint: string): Promise<PokemonInfo> {
-    const data = await this.get<PokemonInfo>(endpoint);
+  async getPokemon(endpoint: string): Promise<PokemonData> {
+    const data = await this.get<PokemonData>(endpoint);
     console.log(data);
     return data;
   }

@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { pokemonService } from "../services/PokemonService";
+import { pokemonService, type PokemonData } from "../services/PokemonService";
 import type { PokemonNames } from "../App.tsx";
 
 type PokemonNamesProps = {
   pokemonNames: PokemonNames[],
-  onNamesFetched: (pokemonNames: PokemonNames[]) => void
+  onNamesFetched: (pokemonNames: PokemonNames[]) => void,
+  onPokemonSelection: (pokemonInfo: PokemonData) => void
 }
 // NOTE LOOK OVER THIS STUFF AGAIN.
-export function GetPokemonNames({ onNamesFetched, pokemonNames }: PokemonNamesProps) {
+export function GetPokemonNames({ onNamesFetched, onPokemonSelection, pokemonNames }: PokemonNamesProps) {
 
   const [selectedUrl, setSelectedUrl] = useState<string>("");
 
@@ -32,7 +33,8 @@ export function GetPokemonNames({ onNamesFetched, pokemonNames }: PokemonNamesPr
     project most likely wouldn't change that much, but I still like to build things
     to scale properly).*/
     if (!selectedUrl) return;
-    await pokemonService.getPokemon(selectedUrl)
+    const selectedPokemon = await pokemonService.getPokemon(selectedUrl)
+    onPokemonSelection(selectedPokemon);
   }
 
   useEffect(() => {
