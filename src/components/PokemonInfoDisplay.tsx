@@ -3,6 +3,13 @@ import { type PokemonData } from "../services/PokemonService"
 type PokemonInfo = {
   pokemonInfo?: PokemonData
 }
+
+function playPokemonCry() {
+  const pokemonCry = document.getElementById("pokemon-cry");
+  if (pokemonCry instanceof HTMLAudioElement) {
+    pokemonCry.play();
+  }
+}
 // NOTE LOOK INTO REACT SKELETONS OR A PLACEHOLDER TEMPLATE COMPONENT OR DUMMY PROPS AND IMPLEMENT FOR WHEN POKEMONINFODISPLAY IS NULL
 export function PokemonInfoDisplay({ pokemonInfo }: PokemonInfo) {
   return (
@@ -23,6 +30,8 @@ export function PokemonInfoDisplay({ pokemonInfo }: PokemonInfo) {
           </div>
         </div>
       </div>
+      <button onClick={playPokemonCry}>Cry</button>
+      <audio id="pokemon-cry" src={pokemonInfo?.cries.latest}></audio>
     </>
   )
 }

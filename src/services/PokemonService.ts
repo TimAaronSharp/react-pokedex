@@ -6,7 +6,9 @@ type PokemonLinkInfo = {
 }
 
 export type PokemonData = {
-  cries: string,
+  cries: {
+    latest: string
+  },
   height: number,
   id: number,
   species: {
