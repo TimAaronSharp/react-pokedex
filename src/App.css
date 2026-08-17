@@ -1,6 +1,8 @@
 body {
   background-color: rgb(71, 62, 62);
   color: white;
+  display: flex;
+  justify-content: center;
 }
 
 .pokedex-body {
@@ -12,7 +14,9 @@ body {
   padding-top: 5%;
 }
 
-.pokedex-screen-pokemon {
+.pokedex-screens-container {}
+
+.pokedex-screen-pokemon-img {
   background-color: rgba(65, 191, 223, 0.777);
   border-radius: 5%;
   height: 150px;
@@ -26,6 +30,28 @@ body {
   display: flex;
   width: 100%;
 }
+
+.pokedex-screen-info {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  margin-top: 2px;
+  background-color: rgba(65, 191, 223, 0.777);
+  border-radius: 5%;
+  /*Look into the best solution for this given*/
+}
+
+.pokedex-id-name {
+  display: flex;
+  flex-direction: column;
+}
+
+.pokedex-ht-wt {
+  display: flex;
+  justify-content: space-between;
+}
+
+
 
 /* .counter {
   font-size: 16px;
