@@ -3,17 +3,17 @@ import { pokemonService } from "../services/PokemonService";
 import type { PokemonNames } from "../App.tsx";
 
 type PokemonNamesProps = {
-  names: PokemonNames[]
-  setPokemonNames: (names: PokemonNames) => void
+  pokemonNames: PokemonNames[],
+  onNamesFetched: (pokemonNames: PokemonNames[]) => void
 }
 // NOTE LOOK OVER THIS STUFF AGAIN.
-export default function GetPokemonNames({ setPokemonNames, names }: PokemonNamesProps) {
+export default function GetPokemonNames({ onNamesFetched, pokemonNames }: PokemonNamesProps) {
 
   const [selectedUrl, setSelectedUrl] = useState<string>("");
 
   async function populatePokemonNames() {
     const names = await pokemonService.getPokemonNames();
-    setPokemonNames(names);
+    onNamesFetched(names);
 
     if (names.length > 0) {
       setSelectedUrl(names[0].url);

@@ -10,8 +10,12 @@ export type PokemonNames = {
 function App() {
   const [pokemonNames, setPokemonNames] = useState<PokemonNames[]>([]);
 
+  function handleSetPokemonNames(names: PokemonNames[]) {
+    setPokemonNames(names)
+  }
+
   return (
-    <GetPokemonNames setPokemonNames={setPokemonNames} pokemonNames={pokemonNames} />
+    <GetPokemonNames onNamesFetched={handleSetPokemonNames} pokemonNames={pokemonNames} />
   )
 }
 
