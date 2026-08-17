@@ -7,7 +7,7 @@ type PokemonNamesProps = {
   onNamesFetched: (pokemonNames: PokemonNames[]) => void
 }
 // NOTE LOOK OVER THIS STUFF AGAIN.
-export default function GetPokemonNames({ onNamesFetched, pokemonNames }: PokemonNamesProps) {
+export function GetPokemonNames({ onNamesFetched, pokemonNames }: PokemonNamesProps) {
 
   const [selectedUrl, setSelectedUrl] = useState<string>("");
 

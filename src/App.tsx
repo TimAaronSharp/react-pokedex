@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css'
-import GetPokemonNames from './components/GetPokemonNames.tsx';
+import { GetPokemonNames } from './components/GetPokemonNames.tsx';
 
 export type PokemonNames = {
   name: string;
