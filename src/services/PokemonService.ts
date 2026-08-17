@@ -9,7 +9,9 @@ export type PokemonData = {
   cries: string,
   height: number,
   id: number,
-  species: string,
+  species: {
+    name: string
+  },
   sprites: {
     front_default: string
   },

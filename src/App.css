@@ -3,6 +3,30 @@ body {
   color: white;
 }
 
+.pokedex-body {
+  background-color: red;
+  height: 500px;
+  width: 350px;
+  display: flex;
+  justify-content: center;
+  padding-top: 5%;
+}
+
+.pokedex-screen-pokemon {
+  background-color: rgba(65, 191, 223, 0.777);
+  border-radius: 5%;
+  height: 150px;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokemon-img {
+  display: flex;
+  width: 100%;
+}
+
 /* .counter {
   font-size: 16px;
   padding: 5px 10px;

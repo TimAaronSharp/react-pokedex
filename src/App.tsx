@@ -17,8 +17,8 @@ function App() {
     setPokemonNames(names);
   }
 
-  function handleSetPokemonInfo(pokemonInfo: PokemonData) {
-    setPokemonInfo(pokemonInfo);
+  function handleSetPokemonInfo(pokemonFetchInfo: PokemonData) {
+    setPokemonInfo(pokemonFetchInfo);
   }
 
   return (
@@ -26,7 +26,7 @@ function App() {
       <GetPokemonNames onNamesFetched={handleSetPokemonNames} onPokemonSelection={handleSetPokemonInfo} pokemonNames={pokemonNames} />
       {/* NOTE This line checks if the "pokemonInfo" variable exists/is undefined. If it is not
       then it will render the component. */}
-      {pokemonInfo && <PokemonInfoDisplay pokemonInfo={pokemonInfo} />}
+      <PokemonInfoDisplay pokemonInfo={pokemonInfo} />
     </>
   )
 }
