@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { pokemonService } from "../services/PokemonService";
+import type { PokemonNames } from "../App.tsx";
 
-type PokemonNames = {
-  name: string;
-  url: string;
+type PokemonNamesProps = {
+  names: PokemonNames[]
+  setPokemonNames: (names: PokemonNames) => void
 }
+// NOTE LOOK OVER THIS STUFF AGAIN.
+export default function GetPokemonNames({ setPokemonNames, names }: PokemonNamesProps) {
 
-export default function GetPokemonNames() {
-  const [pokemonNames, setPokemonNames] = useState<PokemonNames[]>([]);
   const [selectedUrl, setSelectedUrl] = useState<string>("");
 
   async function populatePokemonNames() {
