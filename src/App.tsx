@@ -23,8 +23,14 @@ function App() {
 
   return (
     <>
-      <GetPokemonNames onNamesFetched={handleSetPokemonNames} onPokemonSelection={handleSetPokemonInfo} pokemonNames={pokemonNames} />
-      <PokemonInfoDisplay pokemonInfo={pokemonInfo} />
+      {/* NOTE When prop drilling functions from the level that they are defined in you can either
+        make them the same name (handleSetPokemonNames={handleSetPokemonNames}). This will still work,
+        but convention says it's clearer to name the internal component logic with the "handle" prefix 
+        (the actual function) because it is what is actually handling the action, and "on" prefix 
+        (onNamesFetched) for props being passed down because it represents the event that the parent
+        component is listening for. */}
+      {/* NOTE MORE RELATED TO THIS IN <PokemonInfoDisplay />*/}
+      <PokemonInfoDisplay pokemonInfo={pokemonInfo} onNamesFetched={handleSetPokemonNames} onPokemonSelection={handleSetPokemonInfo} pokemonNames={pokemonNames} />
     </>
   )
 }
