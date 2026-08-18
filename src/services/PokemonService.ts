@@ -27,6 +27,8 @@ type PokemonListResponse = {
   results: PokemonLinkInfo[]
 }
 
+/*NOTE For some reason in each index of the array of pokemon that is fetched by getting pokemon by type the name and url for the pokemon is inside a pokemon object (pokemon:[pokemon:{ name: , url: }]) instead of just containing the name and url like some of the other fetches. Because of this I needed a wrapper type around the type for the data in each index.*/
+
 type PokemonByTypeWrapper = {
   pokemon: PokemonByTypeData[]
 }

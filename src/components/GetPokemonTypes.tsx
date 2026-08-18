@@ -5,13 +5,16 @@ type PokemonType = {
   name: string,
   url: string
 }
-
+/*NOTE For some reason in each index of the array of pokemon that is fetched by getting pokemon by type the name and url for the pokemon is inside a pokemon object (pokemon:[pokemon:{ name: , url: }]) instead of just containing the name and url like some of the other fetches. Because of this I needed to make the "PokemonTypeArray" type to be able to properly drill down to the actual data. I'm not happy with needing to do "pokemon.pokemon.url" etc. to render so I will be experiment with it later but moving on for now.*/
+type PokemonTypeArray = {
+  pokemon: PokemonType
+}
 
 export function GetPokemonTypes() {
 
   const [pokemonTypes, setPokemonTypes] = useState<PokemonType[]>([]);
   const [selectedTypeUrl, setSelectedTypeUrl] = useState<string>("");
-  const [pokemonByType, setPokemonByType] = useState<PokemonType[]>([]);
+  const [pokemonByType, setPokemonByType] = useState<PokemonTypeArray[]>([]);
   const [selectedPokemonUrl, setSelectedPokemonUrl] = useState<string>("");
 
   async function getPokemonTypes() {
@@ -53,8 +56,8 @@ export function GetPokemonTypes() {
           <label htmlFor="pokemon-select-from-type">Select Pokemon</label>
           <select name="pokemon-by-type-select" id="pokemon-select-from-type" value={selectedPokemonUrl} onChange={(e) => setSelectedPokemonUrl(e.target.value)}>
             {
-              pokemonByType?.map((pokemon: PokemonType) => (
-                <option key={`key-for-${pokemon.url}`} value={pokemon.url}>{pokemon.name}</option>
+              pokemonByType?.map((pokemon: PokemonTypeArray) => (
+                <option key={`key-for-${pokemon.pokemon.url}`} value={pokemon.pokemon.url}>{pokemon.pokemon.name}</option>
               ))
             }
           </select>
