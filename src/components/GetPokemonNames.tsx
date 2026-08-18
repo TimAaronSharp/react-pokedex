@@ -22,7 +22,7 @@ export function GetPokemonNames({ onNamesFetched, onPokemonSelection, pokemonNam
   }
 
   async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
-    event.preventDefault()
+    event.preventDefault();
 
     /* NOTE This "if" guards against the event that selectedUrl somehow is an empty string
     when the form is submitted. It shouldn't happen with how it is automatically set in

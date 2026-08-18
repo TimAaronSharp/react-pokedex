@@ -50,7 +50,7 @@ export function PokemonInfoDisplay() {
         {/* NOTE Work on getting this properly structured/styled inside the pokedex-body. */}
         <GetPokemonNames onNamesFetched={handleSetPokemonNames} onPokemonSelection={handleSetPokemonInfo} pokemonNames={pokemonNames} />
       </div>
-      <GetPokemonTypes />
+      <GetPokemonTypes onPokemonSelection={handleSetPokemonInfo} />
       <button onClick={playPokemonCry}>Cry</button>
       <audio id="pokemon-cry" src={pokemonInfo?.cries.latest}></audio>
     </>

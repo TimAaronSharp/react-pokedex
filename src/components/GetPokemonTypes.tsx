@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react"
-import { pokemonService } from "../services/PokemonService"
+import { pokemonService, type PokemonData } from "../services/PokemonService"
+
+type PokemonTypesProps = {
+  onPokemonSelection: (pokemonInfo: PokemonData) => void
+}
 
 type PokemonType = {
   name: string,
@@ -10,7 +14,7 @@ type PokemonTypeArray = {
   pokemon: PokemonType
 }
 
-export function GetPokemonTypes() {
+export function GetPokemonTypes({ onPokemonSelection }: PokemonTypesProps) {
 
   const [pokemonTypes, setPokemonTypes] = useState<PokemonType[]>([]);
   const [selectedTypeUrl, setSelectedTypeUrl] = useState<string>("");
@@ -31,6 +35,18 @@ export function GetPokemonTypes() {
 
     const selectedType = await pokemonService.getPokemonByType(selectedTypeUrl);
     setPokemonByType(selectedType);
+
+    if (selectedType.length > 0) {
+      setSelectedPokemonUrl(selectedType[0].pokemon.url);
+    }
+  }
+
+  async function handlePokemonSubmit(event: React.SubmitEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!selectedPokemonUrl) return
+
+    const selectedPokemon = await pokemonService.getPokemon(selectedPokemonUrl);
+    onPokemonSelection(selectedPokemon);
   }
 
   useEffect(() => {
@@ -52,7 +68,7 @@ export function GetPokemonTypes() {
         <button type="submit">Get</button>
       </form>
       {pokemonByType.length > 0 && (
-        <form action="">
+        <form onSubmit={handlePokemonSubmit}>
           <label htmlFor="pokemon-select-from-type">Select Pokemon</label>
           <select name="pokemon-by-type-select" id="pokemon-select-from-type" value={selectedPokemonUrl} onChange={(e) => setSelectedPokemonUrl(e.target.value)}>
             {
@@ -61,6 +77,7 @@ export function GetPokemonTypes() {
               ))
             }
           </select>
+          <button type="submit">Get</button>
         </form>
       )}
     </>
