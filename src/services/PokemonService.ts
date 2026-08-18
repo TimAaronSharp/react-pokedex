@@ -42,6 +42,12 @@ class PokemonService extends ApiService {
     console.log(data);
     return data;
   }
+
+  async getPokemonTypes(): Promise<PokemonLinkInfo[]> {
+    const data = await this.get<PokemonListResponse>("https://pokeapi.co/api/v2/type");
+    console.log("Pokemon types retrieved are ", data.results);
+    return data.results;
+  }
 }
 
 export const pokemonService = new PokemonService();

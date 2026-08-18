@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { PokemonNames } from "../App.tsx";
 import { type PokemonData } from "../services/PokemonService"
 import { GetPokemonNames } from "./GetPokemonNames.tsx";
+import { GetPokemonTypes } from "./GetPokemonTypes.tsx";
 
 function playPokemonCry() {
   const pokemonCry = document.getElementById("pokemon-cry");
@@ -49,6 +50,7 @@ export function PokemonInfoDisplay() {
         {/* NOTE Work on getting this properly structured/styled inside the pokedex-body. */}
         <GetPokemonNames onNamesFetched={handleSetPokemonNames} onPokemonSelection={handleSetPokemonInfo} pokemonNames={pokemonNames} />
       </div>
+      <GetPokemonTypes />
       <button onClick={playPokemonCry}>Cry</button>
       <audio id="pokemon-cry" src={pokemonInfo?.cries.latest}></audio>
     </>
