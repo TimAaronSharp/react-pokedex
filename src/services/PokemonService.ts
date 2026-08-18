@@ -1,8 +1,8 @@
 import { ApiService } from "./ApiService.ts";
 
 type PokemonLinkInfo = {
-  name: string;
-  url: string;
+  name: string,
+  url: string
 }
 
 export type PokemonData = {
@@ -21,10 +21,18 @@ export type PokemonData = {
 }
 
 type PokemonListResponse = {
-  count: number;
-  next: string | null;
-  previous: string | null;
+  count: number,
+  next: string | null,
+  previous: string | null,
   results: PokemonLinkInfo[]
+}
+
+type PokemonByTypeWrapper = {
+  pokemon: PokemonByTypeData[]
+}
+
+type PokemonByTypeData = {
+  pokemon: PokemonLinkInfo
 }
 
 class PokemonService extends ApiService {
@@ -47,6 +55,12 @@ class PokemonService extends ApiService {
     const data = await this.get<PokemonListResponse>("https://pokeapi.co/api/v2/type");
     console.log("Pokemon types retrieved are ", data.results);
     return data.results;
+  }
+
+  async getPokemonByType(endpoint: string): Promise<PokemonByTypeData[]> {
+    const data = await this.get<PokemonByTypeWrapper>(endpoint);
+    console.log("Pokemon returned by type are ", data.pokemon);
+    return data.pokemon;
   }
 }
 
