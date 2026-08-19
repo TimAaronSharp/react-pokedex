@@ -27,7 +27,7 @@ type PokemonListResponse = {
   results: PokemonLinkInfo[]
 }
 
-/*NOTE For some reason in each index of the array of pokemon that is fetched by getting pokemon by type the name and url for the pokemon is inside a pokemon object (pokemon:[pokemon:{ name: , url: }]) instead of just containing the name and url like some of the other fetches. Because of this I needed a wrapper type around the type for the data in each index.*/
+/*NOTE For some reason in each index of the array of pokemon that is fetched by getting pokemon by type the name and url for the pokemon is inside a pokemon object (pokemon:[pokemon:{ name: , url: }]) instead of just containing the name and url like some of the other fetches. Because of this I needed a wrapper type around the type for the data in each index. Will normalize the data in "getPokemonByType()" so it does not return as "pokemon.pokemon.name/url".*/
 
 type PokemonByTypeWrapper = {
   pokemon: PokemonByTypeData[]
@@ -59,10 +59,13 @@ class PokemonService extends ApiService {
     return data.results;
   }
 
-  async getPokemonByType(endpoint: string): Promise<PokemonByTypeData[]> {
+  async getPokemonByType(endpoint: string): Promise<PokemonLinkInfo[]> {
     const data = await this.get<PokemonByTypeWrapper>(endpoint);
-    console.log("Pokemon returned by type are ", data.pokemon);
-    return data.pokemon;
+    /*NOTE Normalization explained above in types.  */
+    return data.pokemon.map((slot) => ({
+      name: slot.pokemon.name,
+      url: slot.pokemon.url
+    }));
   }
 }
 
