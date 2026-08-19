@@ -56,7 +56,9 @@ class PokemonService extends ApiService {
   async getPokemonTypes(): Promise<PokemonLinkInfo[]> {
     const data = await this.get<PokemonListResponse>("https://pokeapi.co/api/v2/type");
     console.log("Pokemon types retrieved are ", data.results);
-    return data.results;
+    // NOTE Stellar and Unknown are not actual types pokemon can have, but they can affect the game (which do not matter for the scope of this project). Filtering out so they don't render in the list.
+    const toExclude = ["stellar", "unknown"];
+    return data.results.filter(pokemonType => !toExclude.includes(pokemonType.name));
   }
 
   async getPokemonByType(endpoint: string): Promise<PokemonLinkInfo[]> {
