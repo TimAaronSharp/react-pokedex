@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { PokemonNames } from "../App.tsx";
-import { type PokemonData } from "../services/PokemonService"
+import { pokemonService, type PokemonData } from "../services/PokemonService"
 import { GetPokemonNames } from "./GetPokemonNames.tsx";
 import { GetPokemonTypes } from "./GetPokemonTypes.tsx";
 
@@ -15,13 +15,21 @@ function playPokemonCry() {
 export function PokemonInfoDisplay() {
   const [pokemonNames, setPokemonNames] = useState<PokemonNames[]>([]);
   const [pokemonInfo, setPokemonInfo] = useState<PokemonData>();
+  const [adjacentPokemon, setAdjacentPokemon] = useState<PokemonData[]>([]);
 
   function handleSetPokemonNames(names: PokemonNames[]) {
     setPokemonNames(names);
+    handleSetAdjacentPokemonNames();
   }
 
   function handleSetPokemonInfo(pokemonFetchInfo: PokemonData) {
     setPokemonInfo(pokemonFetchInfo);
+  }
+
+  async function handleSetAdjacentPokemonNames(endpoint: string) {
+    const endpointLimit = `${endpoint.slice(0, -1)}?limit=5`
+    const adjacentPokemonNames = await pokemonService.getPokemon(endpoint);
+    setAdjacentPokemon(pokemonFetchInfo);
   }
   return (
     <>
